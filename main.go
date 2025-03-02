@@ -15,6 +15,8 @@ func main() {
 
 	// Migrate
 	config.DB.AutoMigrate(&models.User{})
+	config.DB.AutoMigrate(&models.Lead{})
+	config.DB.AutoMigrate(&models.Product{})
 
 	// Seeder
 	config.Seed()
