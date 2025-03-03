@@ -99,3 +99,23 @@ func CustomerStore(c echo.Context) error {
 		"message": "Created successfully",
 	})
 }
+
+func CustomerLead(c echo.Context) error {
+	var customerM []models.Lead
+	// Get all data in status "new"
+	if err := config.DB.Where("status = ?", "new").Find(&customerM).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+
+	// return success
+	utils.Logger.Info("Lead successfully")
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"code":    http.StatusOK,
+		"message": "Lead successfully",
+		"Data":    customerM,
+	})
+}

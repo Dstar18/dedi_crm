@@ -43,6 +43,7 @@ func main() {
 
 	protected.GET("/customers", controllsers.Customers)
 	protected.POST("/customers/add", controllsers.CustomerStore)
+	protected.GET("/customers/lead", controllsers.CustomerLead)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
