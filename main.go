@@ -42,6 +42,7 @@ func main() {
 	protected.Use(middleware.SessionMiddleware)
 
 	protected.GET("/customers", controllsers.Customers)
+	protected.POST("/customers/add", controllsers.CustomerStore)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
