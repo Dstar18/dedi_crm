@@ -171,11 +171,19 @@ func ProductDestroy(c echo.Context) error {
 		})
 	}
 
+	// delete to db
+	if err := config.DB.Delete(&productM).Error; err != nil {
+		utils.Logger.Error(err.Error())
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+	}
+
 	// return success
 	utils.Logger.Info("Deleted successfully")
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"code":    http.StatusOK,
 		"message": "Deleted successfully",
-		"data":    productM,
 	})
 }

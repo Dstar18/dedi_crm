@@ -48,6 +48,7 @@ func main() {
 	protected.GET("/product", controllsers.Products)
 	protected.POST("/product/add", controllsers.ProductStore)
 	protected.POST("/product/update/:id", controllsers.ProductUpdate)
+	protected.GET("/product/delete/:id", controllsers.ProductDestroy)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
