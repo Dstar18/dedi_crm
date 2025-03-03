@@ -41,5 +41,7 @@ func main() {
 	protected := e.Group("/api")
 	protected.Use(middleware.SessionMiddleware)
 
+	protected.GET("/customers", controllsers.Customers)
+
 	e.Logger.Fatal(e.Start(":3000"))
 }
