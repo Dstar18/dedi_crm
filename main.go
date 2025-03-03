@@ -3,9 +3,9 @@ package main
 import (
 	"dedi_crm/config"
 	"dedi_crm/controllsers"
+	"dedi_crm/middleware"
 	"dedi_crm/models"
 	"dedi_crm/utils"
-	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
@@ -31,10 +31,15 @@ func main() {
 	e := echo.New()
 
 	// Route public
-	e.GET("/hello", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+
+	e.POST("/login", controllsers.Login)
 	e.POST("/register", controllsers.StoreUser)
+	e.GET("/logout", controllsers.Logout)
+
+	// Route Auth
+	// Middleware Session
+	protected := e.Group("/api")
+	protected.Use(middleware.SessionMiddleware)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
