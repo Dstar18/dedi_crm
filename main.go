@@ -45,5 +45,7 @@ func main() {
 	protected.POST("/customers/add", controllsers.CustomerStore)
 	protected.GET("/customers/lead", controllsers.CustomerLead)
 
+	protected.GET("/product", controllsers.Products)
+
 	e.Logger.Fatal(e.Start(":3000"))
 }
