@@ -131,11 +131,13 @@ Pastikan Anda memiliki:
 2. **Jalankan docker compose**:  
 
    ```bash  
-   docker-compose up --build  
+   docker compose -f 'docker-compose.yml' up -d --build 'postgres'
+ 
+   docker compose -f 'docker-compose.yml' up -d --build 'adminer'
 
-Jika terjadi error Failed to connect to database!, jalankan kembali docker compose:  
+   docker compose -f 'docker-compose.yml' up -d --build 'app'
 
-- docker-compose up
+   docker-compose up
 
 ## Access Aplikasi dan Port  
 
