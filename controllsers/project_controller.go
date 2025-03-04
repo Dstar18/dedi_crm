@@ -137,11 +137,54 @@ func ProjectVerifier(c echo.Context) error {
 		})
 	}
 
+	// Update status customer (approved) / not lead
+	var customerM models.Lead
+	if err := config.DB.First(&customerM, projectM.LeadID).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+	customerM.Status = "approved"
+	if err := config.DB.Save(&customerM).Error; err != nil {
+		utils.Logger.Error(err.Error())
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"code":    http.StatusInternalServerError,
+			"message": err.Error(),
+		})
+	}
+
 	// return success
 	utils.Logger.Info("Project Verifier successfully")
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"code":    http.StatusOK,
 		"message": "Project Verifier successfully",
+		"data":    projectM,
+	})
+}
+
+func ProjectDetail(c echo.Context) error {
+	// request param id
+	id := c.Param("id")
+
+	// request struct model
+	var projectM models.Project
+
+	// check data by id
+	if err := config.DB.First(&projectM, id).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+
+	// return success
+	utils.Logger.Info("Project Detail successfully")
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"code":    http.StatusOK,
+		"message": "Project Detail successfully",
 		"data":    projectM,
 	})
 }

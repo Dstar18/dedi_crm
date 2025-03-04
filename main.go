@@ -50,6 +50,7 @@ func main() {
 	protected.POST("/product/update/:id", controllsers.ProductUpdate)
 	protected.GET("/product/delete/:id", controllsers.ProductDestroy)
 
+	protected.GET("/project/:id", controllsers.ProjectDetail)
 	protected.POST("/project/add", controllsers.ProjectAdd, middleware.IsLogin("sales"))
 	protected.POST("/project/verifier/:id", controllsers.ProjectVerifier, middleware.IsLogin("manager"))
 
