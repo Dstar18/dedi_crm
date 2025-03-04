@@ -137,7 +137,10 @@ Jika terjadi error Failed to connect to database!, jalankan kembali docker compo
 
 - docker-compose up
 
-3. **Access Aplikasi di Postman**:  
+## Access Aplikasi and Port  
 
-   ```bash  
-   localhost:3000
+Pastikan Anda memiliki:  
+
+- Apps: localhost:3000
+- PostgreSQL: localhost:5432
+- Adminer: localhost:8081
