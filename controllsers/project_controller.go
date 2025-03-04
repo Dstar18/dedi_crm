@@ -194,9 +194,9 @@ func ProjectCustomer(c echo.Context) error {
 	// request param customerID
 	customerID := c.Param("id")
 
-	// Get data project
+	// Get data project by customerID
 	var projectM models.Project
-	if err := config.DB.First(&projectM, customerID).Error; err != nil {
+	if err := config.DB.Where("lead_id = ? ", customerID).First(&projectM).Error; err != nil {
 		utils.Logger.Warn("Data Not found")
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
 			"code":    http.StatusNotFound,
