@@ -131,11 +131,11 @@ Pastikan Anda memiliki:
 2. **Jalankan docker compose**:  
 
    ```bash  
-   docker-compose up --build    
+   docker-compose up --build  
 
-   Jika terdapat error "Failed to connect to database!", maka jalankan kembali docker compose
-   ```bash  
-   docker-compose up
+Jika terjadi error Failed to connect to database!, jalankan kembali docker compose:  
+
+- docker-compose up
 
 3. **Access Aplikasi di Postman**:  
 
