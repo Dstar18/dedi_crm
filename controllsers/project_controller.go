@@ -5,6 +5,7 @@ import (
 	"dedi_crm/models"
 	"dedi_crm/utils"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/go-playground/validator/v10"
@@ -186,5 +187,52 @@ func ProjectDetail(c echo.Context) error {
 		"code":    http.StatusOK,
 		"message": "Project Detail successfully",
 		"data":    projectM,
+	})
+}
+
+func ProjectCustomer(c echo.Context) error {
+	// request param customerID
+	customerID := c.Param("id")
+
+	// Get data project
+	var projectM models.Project
+	if err := config.DB.First(&projectM, customerID).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+
+	// get data customer
+	var customerM models.Lead
+	if err := config.DB.First(&customerM, customerID).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+
+	productIDs := strings.Split(projectM.ProductID, ",")
+	var productM []models.Product
+	if err := config.DB.Where("id IN ?", productIDs).Find(&productM).Error; err != nil {
+		utils.Logger.Warn("Data Not found")
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"code":    http.StatusNotFound,
+			"message": "Data Not Found",
+		})
+	}
+
+	// return success
+	utils.Logger.Info("Project Customer successfully")
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"code":    http.StatusOK,
+		"message": "Project Customer successfully",
+		"data": map[string]interface{}{
+			"project":  projectM,
+			"customer": customerM,
+			"product":  productM,
+		},
 	})
 }
