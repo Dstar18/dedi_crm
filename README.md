@@ -137,9 +137,7 @@ Jika terjadi error Failed to connect to database!, jalankan kembali docker compo
 
 - docker-compose up
 
-## Access Aplikasi and Port  
-
-Pastikan Anda memiliki:  
+## Access Aplikasi dan Port  
 
 - Apps: localhost:3000
 - PostgreSQL: localhost:5432
