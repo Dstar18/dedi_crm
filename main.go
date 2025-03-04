@@ -50,8 +50,8 @@ func main() {
 	protected.POST("/product/update/:id", controllsers.ProductUpdate)
 	protected.GET("/product/delete/:id", controllsers.ProductDestroy)
 
-	// role sales
 	protected.POST("/project/add", controllsers.ProjectAdd, middleware.IsLogin("sales"))
+	protected.POST("/project/verifier/:id", controllsers.ProjectVerifier, middleware.IsLogin("manager"))
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
