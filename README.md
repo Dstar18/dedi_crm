@@ -142,3 +142,7 @@ Jika terjadi error Failed to connect to database!, jalankan kembali docker compo
 - Apps: localhost:3000
 - PostgreSQL: localhost:5432
 - Adminer: localhost:8081
+
+## Demo Aplikasi  
+
+https://youtu.be/dcA3w3o-Yec
