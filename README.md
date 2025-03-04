@@ -137,8 +137,6 @@ Pastikan Anda memiliki:
 
    docker compose -f 'docker-compose.yml' up -d --build 'app'
 
-   docker-compose up
-
 ## Access Aplikasi dan Port  
 
 - Apps: localhost:3000
