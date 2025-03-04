@@ -15,9 +15,20 @@ Aplikasi ini dirancang menggunakan bahasa pemrograman Golang dengan framework ec
 
 ### Public Routes  
 
+- **[POST] /register**  
+  - Mendaftarkan pengguna baru.  
+  - **Body**:  
+    ```json  
+    {
+        "name": "Dedi",
+        "email": "dedi@mail.com",
+        "password": "Dedi12345#",
+        "role": "manager"
+    }  
+    ```  
+
 - **[POST] /login**  
   - Mengautentikasi pengguna.
-  - Default akun: email(admin@mail.com), password(Admin123#)  
   - **Body**:  
     ```json  
     {  
@@ -25,47 +36,82 @@ Aplikasi ini dirancang menggunakan bahasa pemrograman Golang dengan framework ec
       "password": "Dedi12345#"  
     }  
     ```  
-    
-- **[POST] /register**  
-  - Mendaftarkan pengguna baru.  
 
 - **[GET] /logout**  
   - Mengeluarkan pengguna dari sesi aktif.  
 
 ### Protected Routes  
 
-- **[GET] /customers**  
-  - Mendapatkan daftar semua pelanggan.  
+- **[GET] /api/customers**  
+  - Menampilkan daftar semua pelanggan.  
 
-- **[POST] /customers/add**  
+- **[POST] /api/customers/add**  
   - Menambahkan pelanggan baru.  
+  - **Body**:  
+    ```json  
+    {
+        "name": "Budi",
+        "email": "budi@mail.com",
+        "phone": "012393023888",
+        "address": "Jl. Raya"
+    }
+    ```  
 
-- **[GET] /customers/lead**  
-  - Mendapatkan daftar lead pelanggan.  
+- **[GET] /api/customers/lead**  
+  - Menampilkan daftar customer (lead) / pengguna baru.  
 
-- **[GET] /product**  
-  - Mengambil daftar produk.  
+- **[GET] /api/product**  
+  - Menampilkan semua data produk.  
 
-- **[POST] /product/add**  
+- **[POST] /api/product/add**  
   - Menambahkan produk baru.  
+  - **Body**:  
+    ```json  
+    {
+        "name": "Smarthome",
+        "description": "Layanan Smart Home",
+        "price": "2000000"
+    }
+    ```  
 
-- **[POST] /product/update/{id}**  
+- **[POST] /api/product/update/{id}**  
   - Memperbarui produk berdasarkan ID.  
+  - **Body**:  
+    ```json  
+    {
+        "name": "Smarthome123",
+        "description": "Layanan Smart Home",
+        "price": "4000000"
+    }
+    ```  
 
-- **[GET] /product/delete/{id}**  
+- **[GET] /api/product/delete/{id}**  
   - Menghapus produk berdasarkan ID.  
 
-- **[GET] /project/{id}**  
+- **[GET] /api/project/{id}**  
   - Mendapatkan detail proyek berdasarkan ID.  
 
-- **[GET] /project/customer/{id}**  
+- **[GET] /api/project/customer/{id}**  
   - Mendapatkan detail proyek berdasarkan ID pelanggan.  
 
-- **[POST] /project/add** (Access: Sales)  
+- **[POST] /api/project/add** (Access: Sales)  
   - Menambahkan proyek baru. Hanya dapat diakses oleh pengguna dengan peran "sales".  
+  - **Body**:  
+    ```json  
+    {
+        "lead_id": 1,
+        "product_id": "1,3"
+    }
+    ```  
 
-- **[POST] /project/verifier/{id}** (Access: Manager)  
+- **[POST] /api/project/verifier/{id}** (Access: Manager)  
   - Memverifikasi proyek berdasarkan ID. Hanya dapat diakses oleh pengguna dengan peran "manager".  
+  - **Body**:  
+    ```json  
+    {
+        "status": "approved"
+    }
+    ```  
 
 ## Prasyarat  
 
@@ -76,8 +122,18 @@ Pastikan Anda memiliki:
 
 ## Cara Menjalankan Aplikasi  
 
-1. **Klon repositori ini**:  
+1. **Clone repositori**:  
 
    ```bash  
-   git clone https://github.com/username/your-app.git  
-   cd your-app  
+   git clone https://github.com/Dstar18/dedi_crm.git
+   cd dedi_crm  
+
+2. **Jalankan docker compose**:  
+
+   ```bash  
+   docker-compose up --build    
+
+3. **Access Aplikasi di Postman**:  
+
+   ```bash  
+   localhost:3000
