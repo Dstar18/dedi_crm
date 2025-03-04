@@ -125,7 +125,7 @@ Pastikan Anda memiliki:
 1. **Clone repositori**:  
 
    ```bash  
-   git clone https://github.com/Dstar18/dedi_crm.git
+   git clone https://github.com/Dstar18/dedi_crm
    cd dedi_crm  
 
 2. **Jalankan docker compose**:  
