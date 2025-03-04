@@ -5,6 +5,7 @@ import (
 	"dedi_crm/models"
 	"dedi_crm/utils"
 	"net/http"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
@@ -81,6 +82,7 @@ func CustomerStore(c echo.Context) error {
 		Address:   customer.Address,
 		Status:    "new",
 		CreatedBy: userM.ID,
+		CreatedAt: time.Now(),
 	}
 
 	// create to db

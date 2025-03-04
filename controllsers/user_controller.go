@@ -81,7 +81,7 @@ func StoreUser(c echo.Context) error {
 		Email:     user.Email,
 		Password:  hashedPassword,
 		Role:      user.Role,
-		CreatedAt: time.Now().Format("2006-01-02 15:04:05"),
+		CreatedAt: time.Now(),
 	}
 
 	// create to db

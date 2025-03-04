@@ -18,7 +18,7 @@ func Seed() {
 	}
 	if len(userM) == 0 {
 		paramUser := []models.User{
-			{Name: "Admin DWP", Email: "admin@mail.com", Password: hashedPassword, Role: "admin", CreatedAt: time.Now().Format("2006-01-02 15:04:05")},
+			{Name: "Admin DWP", Email: "admin@mail.com", Password: hashedPassword, Role: "admin", CreatedAt: time.Now()},
 		}
 		DB.Create(&paramUser)
 	}
